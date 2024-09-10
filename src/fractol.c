@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:43:21 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 19:54:04 by zpiarova         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:30:27 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	set_pixel(int x, int y, t_fractal f)
 			return (mlx_put_pixel(f.img, x, y, scale(i, A, B, f.iters)));
 		i++;
 	}
-	mlx_put_pixel(f.img, x, y, B);
+	mlx_put_pixel(f.img, x, y, W);
 }
 
 // iterates through window pixels one by one, each pixel in each row,

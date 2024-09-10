@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:47:17 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 19:11:58 by zpiarova         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:36:08 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	my_keyhook(mlx_key_data_t keydata, void *fractal)
 		mlx_terminate(f->window);
 		exit(1);
 	}
-	else if (keydata.key == MLX_KEY_KP_ADD && keydata.action == 0)
+	else if ((keydata.key == MLX_KEY_KP_ADD
+		 ||keydata.key == MLX_KEY_EQUAL)
+		  && keydata.action == 0)
 		f->iters += 5;
 	else if ((keydata.key == MLX_KEY_MINUS
 			|| keydata.key == MLX_KEY_KP_SUBTRACT)

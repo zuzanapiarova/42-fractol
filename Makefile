@@ -3,7 +3,10 @@ CFLAGS	:=  -Wextra -Wall -Werror -Wunreachable-code -Ofast -g
 LIBMLX	:= ./MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -lm -lpthread
+# LINUX
+#LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# MAC
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw3 -pthread -lm
 SRCS	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
