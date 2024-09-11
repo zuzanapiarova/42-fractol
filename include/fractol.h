@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:43:40 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 19:53:22 by zpiarova         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:29:40 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>	// math functions
 # include "../MLX42/include/MLX42/MLX42.h" //minilibx
 
+// preprocessor macros
 # define HEIGHT	1000
 # define WIDTH	1000
 # define W 0xffffffff
@@ -27,10 +28,29 @@
 # define R 0xd91116ff
 # define Y 0xfff700ff
 # define P 0xc457edff
+# define BA 0x00264Dff
+# define BB 0x003366ff
+# define BC 0x004080ff
+# define BD 0x004C99ff
+# define BE 0x0059B3ff
+# define BF 0x0066CCff
+# define BG 0x0073E6ff
+# define BH 0x0080FFff
+# define BI 0x3399FFff
+# define BJ 0x66B2FFff
+#define A1 0xFF00FFFF
+#define A2 0xFF0066FF
+#define A3 0xFF3300FF
+#define A4 0xFF6600FF
+#define A5 0xFF9900FF
+#define A6 0xFFCC00FF
+#define A7 0xCCFF00FF
+#define A8 0x66FF00FF
+#define A9 0x00FF66FF
+#define A0 0x00FFFFFF
 
 typedef struct s_fractal
 {
-	void		*fractal;
 	mlx_t		*window;
 	mlx_image_t	*img;
 	char		*name;

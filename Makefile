@@ -2,11 +2,11 @@ NAME	:= fractol
 CFLAGS	:=  -Wextra -Wall -Werror -Wunreachable-code -Ofast -g
 LIBMLX	:= ./MLX42
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
+HEADERS	:= -I ./include -I $(LIBMLX)/include/MLX42
 # LINUX
 #LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 # MAC
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw3 -pthread -lm
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 

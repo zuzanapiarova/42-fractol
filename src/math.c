@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:43:58 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/08/06 20:47:11 by zpiarova         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:22:44 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fractol.h"
-
-//function to calculate how many iterations i need to know if the point escaped
-//so it is black(inside) or color(outside )
-/* explanation: the less iterations there are we cannot be sure that
-   the point escapes or not - so in few iterations the point is black
-   as it has not escaped yet so it seems stable for now, the more iterations
-   we add the more points escape and the image becomes more and more precise
-   so in less iterations the mandelbrot looks like a big blob, in more
-   iterations it is refines into smaller and more precise shape
-*/
+#include "../include/fractol.h" 
 
 // linear interpolation function = maps/scales points proportionate and
 // linearly to other points to keep the proportions but scaled in/out

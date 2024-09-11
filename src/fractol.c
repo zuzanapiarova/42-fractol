@@ -6,17 +6,11 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:43:21 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 20:30:27 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/09/11 23:48:21 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-
-// ADDING MLX42:
-// git clone https://github.com/codam-coding-college/MLX42
-// cd MLX42
-// cmake -B build
-// make -C build/
 
 // CALL THE PROGRAM: ./fractol(=arg[0]) mandelbrot(=arg[1])   ==>  argc is 2
 // we are basically just setting color to each pixel based on how many
@@ -43,11 +37,23 @@ static void	ft_error(void)
 // but our mandelbrot image has dimensions x(-2.2, 0.8) and y(1.2, -1.8)
 // we color it dependeing on how many iterations it took for point to escape
 // leave white if did not escape in fractal.iterations number of iterations
+/*
+
+		// after each function run we check if the value is not escaped
+		// for condition we use vectors-real(x)+imaginary(y) parts form odvesny
+		// prepona je ich vektor, all vectors with prepona = 2 are deff escaped
+		// - pythagorean theorem compares odvesny squared to prepona squared(4)
+
+} */
+// for each pixel we perform the mandelbrot set function z = z^2 + c
+// and color it dependeing on how many iterations it took for point to escape
+// leave white if did not escape in fractal.iterations number of iterations
 void	set_pixel(int x, int y, t_fractal f)
 {
 	t_complex	z;
 	t_complex	c;
 	int			i;
+	int			palette[10] = {A1, A2, A3, A4, A5, A6, A7, A8, A9, A0};
 
 	z.real = 0;
 	z.imaginary = 0;
@@ -65,10 +71,10 @@ void	set_pixel(int x, int y, t_fractal f)
 	{
 		z = complex_operation(z, c);
 		if (pow(z.real, 2) + pow(z.imaginary, 2) > f.escape_value)
-			return (mlx_put_pixel(f.img, x, y, scale(i, A, B, f.iters)));
+			return (mlx_put_pixel(f.img, x, y, palette[i % 10]));
 		i++;
 	}
-	mlx_put_pixel(f.img, x, y, W);
+	mlx_put_pixel(f.img, x, y, B);
 }
 
 // iterates through window pixels one by one, each pixel in each row,
@@ -142,6 +148,7 @@ int32_t	main(int argc, char *argv[])
 
 // TODO:
 // check memory leaks
+// rmeove not allowed funcitons
 // check that .o files and program are removed
 // sierpinski
 // color range shift with some keys
