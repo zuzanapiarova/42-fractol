@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
+/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:43:21 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/11 23:48:21 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/09/12 19:27:44 by zpiarova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-// CALL THE PROGRAM: ./fractol(=arg[0]) mandelbrot(=arg[1])   ==>  argc is 2
-// we are basically just setting color to each pixel based on how many
-// iterations it takes for point with that coordinates to escape to infinity
-// points that are inside the mandelbrot set are white - never escape
-// points that are outside based on their color we can tell how many
-// iterations it takes for them to escape
+// clone MLX42: git clone https://github.com/codam-coding-college/MLX42.git
 
 // Exit the program when given wrong input
 static void	ft_error(void)
@@ -30,30 +25,13 @@ static void	ft_error(void)
 }
 
 // for each pixel we perform the mandelbrot set function z = z^2 + c
-// for the first run of the function, we set z real and imaginary values to 0
-// because z=0 is the beginning condition for mandelbrot set
-// c real value is our real x position from 0 and c imaginary value is our y position from 0
-// we need to scale the x and y points because the x and y coordinates start at 0 and end at WIDTH/HEIGHT
-// but our mandelbrot image has dimensions x(-2.2, 0.8) and y(1.2, -1.8)
-// we color it dependeing on how many iterations it took for point to escape
-// leave white if did not escape in fractal.iterations number of iterations
-/*
-
-		// after each function run we check if the value is not escaped
-		// for condition we use vectors-real(x)+imaginary(y) parts form odvesny
-		// prepona je ich vektor, all vectors with prepona = 2 are deff escaped
-		// - pythagorean theorem compares odvesny squared to prepona squared(4)
-
-} */
-// for each pixel we perform the mandelbrot set function z = z^2 + c
 // and color it dependeing on how many iterations it took for point to escape
-// leave white if did not escape in fractal.iterations number of iterations
+// leave white if point did not escape in fractal.iterations num of iterations
 void	set_pixel(int x, int y, t_fractal f)
 {
 	t_complex	z;
 	t_complex	c;
 	int			i;
-	int			palette[10] = {A1, A2, A3, A4, A5, A6, A7, A8, A9, A0};
 
 	z.real = 0;
 	z.imaginary = 0;
@@ -71,10 +49,10 @@ void	set_pixel(int x, int y, t_fractal f)
 	{
 		z = complex_operation(z, c);
 		if (pow(z.real, 2) + pow(z.imaginary, 2) > f.escape_value)
-			return (mlx_put_pixel(f.img, x, y, palette[i % 10]));
+			return (mlx_put_pixel(f.img, x, y, set_color(i, f.colorway)));
 		i++;
 	}
-	mlx_put_pixel(f.img, x, y, B);
+	mlx_put_pixel(f.img, x, y, f.inside);
 }
 
 // iterates through window pixels one by one, each pixel in each row,
@@ -97,8 +75,10 @@ void	render_window(t_fractal fractal)
 void	fractal_init(t_fractal *f, char *name)
 {
 	f->name = name;
-	f->iters = 10;
-	f->escape_value = 4;
+	f->iters = 15;
+	f->escape_value = 8;
+	f->colorway = "multi";
+	f->inside = P;
 	f->xstart = -2.2;
 	f->xend = 0.8;
 	f->ystart = 1.2;
@@ -145,10 +125,3 @@ int32_t	main(int argc, char *argv[])
 		ft_error();
 	return (0);
 }
-
-// TODO:
-// check memory leaks
-// rmeove not allowed funcitons
-// check that .o files and program are removed
-// sierpinski
-// color range shift with some keys

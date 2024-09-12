@@ -6,7 +6,7 @@
 /*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:56:45 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 18:02:32 by zpiarova         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:47:00 by zpiarova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,32 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+int	set_color(int i, char *color)
+{
+	int	palette[COLORWAY_SIZE];
+
+	palette[0] = A1;
+	palette[1] = A2;
+	palette[2] = A3;
+	palette[3] = A5;
+	palette[4] = A6;
+	palette[5] = A7;
+	palette[6] = A8;
+	palette[7] = A9;
+	palette[8] = A0;
+	if (!ft_strncmp(color, "blue", 4))
+	{
+		palette[0] = BA;
+		palette[1] = BB;
+		palette[2] = BC;
+		palette[3] = BE;
+		palette[4] = BF;
+		palette[5] = BG;
+		palette[6] = BH;
+		palette[7] = BI;
+		palette[8] = BJ;
+	}
+	return (palette[i % COLORWAY_SIZE]);
 }

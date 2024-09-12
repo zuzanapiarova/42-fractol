@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
+/*   By: zpiarova <zpiarova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:47:17 by zpiarova          #+#    #+#             */
-/*   Updated: 2024/09/10 20:36:08 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/09/12 19:26:30 by zpiarova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
 // ----- HOOKS ------
-// listen for keypress events for ESC, arrows, plus, minus, AWDS for Julia
+// listen for keypress events for ESC, arrows, plus, minus, and AWDS for Julia
 
-void	aswd_hook(mlx_key_data_t keydata, t_fractal *f)
+void	aswd_and_colors_hook(mlx_key_data_t keydata, t_fractal *f)
 {
 	if (keydata.key == MLX_KEY_A && keydata.action == 0)
 		f->julia_r -= 0.01;
@@ -25,6 +25,16 @@ void	aswd_hook(mlx_key_data_t keydata, t_fractal *f)
 		f->julia_i -= 0.01;
 	else if (keydata.key == MLX_KEY_S && keydata.action == 0)
 		f->julia_i += 0.01;
+	else if (keydata.key == MLX_KEY_1 || keydata.key == MLX_KEY_KP_1)
+		f->inside = W;
+	else if (keydata.key == MLX_KEY_2 || keydata.key == MLX_KEY_KP_2)
+		f->inside = B;
+	else if (keydata.key == MLX_KEY_3 || keydata.key == MLX_KEY_KP_3)
+		f->inside = P;
+	else if (keydata.key == MLX_KEY_4 || keydata.key == MLX_KEY_KP_4)
+		f->colorway = "multi";
+	else if (keydata.key == MLX_KEY_5 || keydata.key == MLX_KEY_KP_5)
+		f->colorway = "blue";
 }
 
 void	arrows_hook(mlx_key_data_t keydata, t_fractal *f)
@@ -51,6 +61,7 @@ void	arrows_hook(mlx_key_data_t keydata, t_fractal *f)
 		f->yend += f->diff / 5;
 	}
 }
+
 // we create t_fractal type inside and assign it to point to our fractal
 // because this functions accept only void pointers, not of type t_fractal
 void	my_keyhook(mlx_key_data_t keydata, void *fractal)
@@ -65,15 +76,15 @@ void	my_keyhook(mlx_key_data_t keydata, void *fractal)
 		exit(1);
 	}
 	else if ((keydata.key == MLX_KEY_KP_ADD
-		 ||keydata.key == MLX_KEY_EQUAL)
-		  && keydata.action == 0)
+			|| keydata.key == MLX_KEY_EQUAL)
+		&& keydata.action == 0)
 		f->iters += 5;
 	else if ((keydata.key == MLX_KEY_MINUS
 			|| keydata.key == MLX_KEY_KP_SUBTRACT)
 		&& keydata.action == 0)
 		f->iters -= 5;
 	arrows_hook(keydata, f);
-	aswd_hook(keydata, f);
+	aswd_and_colors_hook(keydata, f);
 	render_window(*f);
 }
 
